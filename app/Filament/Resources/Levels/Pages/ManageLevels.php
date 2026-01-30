@@ -23,4 +23,5 @@ class ManageLevels extends ManageRecords
                 ->modalDescription('Berikut adalah detail dari level yang dipilih.'),
         ];
     }
+
 }

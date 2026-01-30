@@ -9,4 +9,9 @@ class LevelPermissions extends Model
 {
     /** @use HasFactory<\Database\Factories\LevelPermissionsFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'level_id',
+        'nama',
+    ];
 }

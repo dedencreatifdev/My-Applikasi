@@ -21,7 +21,7 @@ class LevelPolicy
      */
     public function view(User $user, Level $level): bool
     {
-        return false;
+        return true;
     }
 
     /**

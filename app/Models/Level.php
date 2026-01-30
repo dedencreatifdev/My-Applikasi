@@ -19,9 +19,16 @@ class Level extends Model
     // public function permissions(): BelongsToMany
     // {
     //     return $this->belongsToMany(
-    //         Permissions::class,
-    //         'level_permissions','id','level_id'
+    //         LevelPermissions::class,
+    //         'levels',
+    //         'level_id',
+    //         'id'
     //     );
     //     // return dd('tes');
     // }
+
+    public function LevelPermission()
+    {
+        return $this->belongsTo(LevelPermissions::class, 'id', 'level_id');
+    }
 }

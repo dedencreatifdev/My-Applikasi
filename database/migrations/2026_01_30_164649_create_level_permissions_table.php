@@ -13,6 +13,18 @@ return new class extends Migration
     {
         Schema::create('level_permissions', function (Blueprint $table) {
             $table->id();
+
+            $table->uuid('level_id')->nullable();
+            $table->string('nama');
+            $table->boolean('lihat')->default(false);
+            $table->boolean('tambah')->default(false);
+            $table->boolean('ubah')->default(false);
+            $table->boolean('detail')->default(false);
+            $table->boolean('hapus')->default(false);
+            $table->boolean('import')->default(false);
+            $table->boolean('export')->default(false);
+
+            
             $table->timestamps();
         });
     }
