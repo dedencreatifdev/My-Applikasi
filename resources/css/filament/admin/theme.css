@@ -1,0 +1,74 @@
+@import "../../../../vendor/filament/filament/resources/css/theme.css";
+
+/* @source '../../../../app/Filament*'; */
+/* @source '../../../../resources/views/filament*'; */
+/* @source '../../../../app/Providers/Filament*'; */
+
+/* @source '../../../../resources/views/components*'; */
+/* @source '../../../../resources/views/livewire*'; */
+/* @source '../../../../app/Livewire*'; */
+
+@theme {
+    --font-sans:
+        "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
+}
+
+* {
+    font-size: 13px;
+    button,
+    button > span {
+        font-size: 12px;
+    }
+    .fi-btn {
+        font-size: 12px;
+    }
+    .fi-sidebar {
+        @apply bg-white dark:bg-gray-950 border-r border-gray-200 dark:border-gray-800;
+    }
+
+    .fi-topbar {
+        @apply bg-primary-600 dark:bg-gray-950;
+        .fi-logo {
+            color: white;
+            font-size: 18px;
+        }
+    }
+
+    .fi-header-heading {
+        font-size: 18px;
+    }
+
+    .fi-page-header-main-ctn {
+        row-gap: calc(var(--spacing) * 3);
+        padding-block: calc(var(--spacing) * 3);
+    }
+
+    /* TABLE */
+    .fi-ta-ctn {
+        border-radius: 0;
+        thead tr {
+
+            border-bottom: 2px solid --primary-600;
+        }
+        .fi-badge-label {
+            font-size: 11px;
+        }
+        .fi-ta-header-cell {
+            padding: 8px 12px;
+        }
+        .fi-ta-cell {
+            padding: 1px 6px;
+        }
+        .fi-ta-actions {
+            padding: 4px 4px;
+        }
+        .fi-ta-text {
+            padding: 8px 12px;
+        }
+        .fi-ta-record-checkbox {
+            padding: 4px 4px;
+        }
+    }
+}
