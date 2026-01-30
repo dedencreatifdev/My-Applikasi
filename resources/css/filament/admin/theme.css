@@ -45,12 +45,48 @@
         padding-block: calc(var(--spacing) * 3);
     }
 
+    /* MENU */
+    .fi-topbar-item {
+        a span{
+            color: white;
+        }
+        .fi-icon{
+            color: white;
+        }
+        .fi-topbar-item-label{
+            color: white;
+        }
+    }
+    .fi-topbar-item:hover {
+        a span{
+            color: var(--primary-600);
+        }
+        .fi-icon{
+            color: var(--primary-600);
+        }
+        .fi-topbar-item-label{
+            color: var(--primary-600);
+        }
+    }
+    .fi-topbar-item.fi-active {
+         a span{
+             color: var(--primary-600);
+            font-weight: normal;
+            font-size: small;
+         }
+        .fi-icon{
+            color: var(--primary-600);
+        }
+        .fi-topbar-item-label{
+            color: var(--primary-600);
+        }
+    }
+
     /* TABLE */
     .fi-ta-ctn {
         border-radius: 0;
         thead tr {
-
-            border-bottom: 2px solid --primary-600;
+            border-bottom: 2px solid var(--primary-600);
         }
         .fi-badge-label {
             font-size: 11px;

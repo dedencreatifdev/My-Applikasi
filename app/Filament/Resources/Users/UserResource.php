@@ -19,12 +19,15 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+
+    protected static string | UnitEnum | null $navigationGroup = 'User Management';
 
     protected static ?string $recordTitleAttribute = 'name';
 
@@ -76,16 +79,21 @@ class UserResource extends Resource
                     ->label('Email address')
                     ->searchable(),
                 TextColumn::make('email_verified_at')
+                    ->visibleFrom('sm')
                     ->dateTime()
                     ->sortable(),
                 TextColumn::make('created_at')
+                    ->visibleFrom('md')
                     ->dateTime()
                     ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                // ->toggleable(isToggledHiddenByDefault: true)
+                ,
                 TextColumn::make('updated_at')
+                    ->visibleFrom('md')
                     ->dateTime()
                     ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                // ->toggleable(isToggledHiddenByDefault: true)
+                ,
             ])
             ->filters([
                 //
@@ -93,11 +101,17 @@ class UserResource extends Resource
             ->recordActions([
                 ActionGroup::make([
                     ViewAction::make()
+                        ->color('info')
                         ->requiresConfirmation()
-                        ->modalDescription('Are you sure you\'d like to delete this post? This cannot be undone.'),
+                        ->modalDescription('Berikut adalah detail dari user yang dipilih.'),
                     EditAction::make()
-                        ->requiresConfirmation(),
-                    DeleteAction::make(),
+                        ->color('success')
+                        ->requiresConfirmation()
+                        ->modalDescription('Edit informasi user yang dipilih.'),
+                    DeleteAction::make()
+                        ->color('danger')
+                        ->requiresConfirmation()
+                        ->modalDescription('Apakah Anda yakin ingin menghapus user ini? Tindakan ini tidak dapat dibatalkan.'),
                 ])
             ])
             ->toolbarActions([

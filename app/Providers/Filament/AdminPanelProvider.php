@@ -31,12 +31,12 @@ class AdminPanelProvider extends PanelProvider
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->login()
             ->colors([
-                'primary' => color::Rose, //Color::Indigo,
-                'success' => Color::Emerald,
-                'info' => Color::Blue,
-                'danger' => Color::Rose,
-                'warning' => Color::Orange,
-                'gray' => Color::Gray,
+                'primary' => Color::Orange, //Color::Indigo,
+                'success' => Color::Emerald, // Emerald
+                'info' => Color::Blue, //Blue
+                'danger' => Color::Rose, //Rose
+                'warning' => Color::Orange, //Orange
+                'gray' => Color::Gray, //Gray
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
@@ -65,10 +65,12 @@ class AdminPanelProvider extends PanelProvider
             ->spa()
             ->font('Poppins')
             ->viteTheme('resources/css/filament/admin/theme.css')
-            ->maxContentWidth(Width::Full)
+            // ->maxContentWidth(Width::Large)
             // ->sidebarCollapsibleOnDesktop()
-            ->sidebarFullyCollapsibleOnDesktop()
+            // ->sidebarFullyCollapsibleOnDesktop()
             ->sidebarWidth('17rem')
+            //
+            ->topNavigation()
         ;
     }
 }
