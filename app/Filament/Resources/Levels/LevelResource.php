@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Levels;
 use App\Filament\Resources\Levels\Pages\ManageLevels;
 use App\Models\Level;
 use BackedEnum;
+use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -23,7 +24,6 @@ class LevelResource extends Resource
 {
     protected static ?string $model = Level::class;
 
-    // protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
     protected static string | UnitEnum | null $navigationGroup = 'User Management';
 
     protected static ?string $recordTitleAttribute = 'nama_level';
@@ -60,6 +60,11 @@ class LevelResource extends Resource
                 //
             ])
             ->recordActions([
+                Action::make('permisAny')
+                    ->button()
+                    ->color('warning')
+                    ->label('Aksi')
+                    ->icon(Heroicon::ShieldExclamation),
                 ViewAction::make()
                     ->label('Detail')
                     ->color('info')

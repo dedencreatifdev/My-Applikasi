@@ -5,7 +5,7 @@ namespace App\Filament\Resources\Users\Pages;
 use App\Filament\Resources\Users\UserResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ManageRecords;
-
+use Filament\Support\Icons\Heroicon;
 
 class ManageUsers extends ManageRecords
 {
@@ -17,7 +17,12 @@ class ManageUsers extends ManageRecords
         return [
             CreateAction::make()
                 ->disableCreateAnother()
-                ->requiresConfirmation(),
+                ->label('Tambah')
+                ->color('primary')
+                ->icon(Heroicon::Plus)
+                ->requiresConfirmation()
+                ->modalDescription('Berikut adalah detail dari user yang dipilih.')
+                ->modalIcon(Heroicon::User),
         ];
     }
 }

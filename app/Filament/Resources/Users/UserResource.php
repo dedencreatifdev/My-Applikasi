@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Users;
 use App\Filament\Resources\Users\Pages\ManageUsers;
 use App\Models\User;
 use BackedEnum;
+use Filament\Actions\Action;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
@@ -100,6 +101,7 @@ class UserResource extends Resource
             ])
             ->recordActions([
                 ActionGroup::make([
+                    
                     ViewAction::make()
                         ->label('Detail')
                         ->color('info')
