@@ -24,7 +24,7 @@ class LevelResource extends Resource
 {
     protected static ?string $model = Level::class;
 
-    protected static string | UnitEnum | null $navigationGroup = 'User Management';
+    protected static string|UnitEnum|null $navigationGroup = 'User Management';
 
     protected static ?string $recordTitleAttribute = 'nama_level';
 
@@ -61,6 +61,11 @@ class LevelResource extends Resource
             ])
             ->recordActions([
                 Action::make('permisAny')
+                    ->action(function (Level $record) {
+                        //
+                        $permisions = $record->permissions;
+                        dd($permisions);
+                    })
                     ->button()
                     ->color('warning')
                     ->label('Aksi')
