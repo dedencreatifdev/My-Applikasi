@@ -19,6 +19,8 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Filament\Navigation\NavigationGroup;
+use Filament\Support\Icons\Heroicon;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -28,7 +30,6 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('')
-            ->viteTheme('resources/css/filament/admin/theme.css')
             ->login()
             ->colors([
                 'primary' => Color::Orange, //Color::Indigo,
@@ -62,6 +63,7 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
+            ->viteTheme('resources/css/filament/admin/theme.css')
             ->spa()
             ->font('Poppins')
             ->viteTheme('resources/css/filament/admin/theme.css')
@@ -71,6 +73,19 @@ class AdminPanelProvider extends PanelProvider
             ->sidebarWidth('17rem')
             //
             ->topNavigation()
+
+            ->navigationGroups([
+                NavigationGroup::make()
+                    ->label('User Management')
+                    ->icon(Heroicon::OutlinedUsers),
+                NavigationGroup::make()
+                    ->label('Blog')
+                    ->icon(Heroicon::OutlinedPencil),
+                NavigationGroup::make()
+                    ->label(fn(): string => __('navigation.settings'))
+                    ->icon(Heroicon::OutlinedCog6Tooth)
+                    ->collapsed(),
+            ])
         ;
     }
 }
