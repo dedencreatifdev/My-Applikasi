@@ -66,13 +66,12 @@ class AdminPanelProvider extends PanelProvider
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->spa()
             ->font('Poppins')
-            ->viteTheme('resources/css/filament/admin/theme.css')
-            // ->maxContentWidth(Width::Large)
+            ->maxContentWidth(Width::Full)
             // ->sidebarCollapsibleOnDesktop()
-            // ->sidebarFullyCollapsibleOnDesktop()
+            ->sidebarFullyCollapsibleOnDesktop()
             ->sidebarWidth('17rem')
             //
-            ->topNavigation()
+            // ->topNavigation()
 
             ->navigationGroups([
                 NavigationGroup::make()

@@ -12,7 +12,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable,HasUuids;
+    use HasFactory, Notifiable, HasUuids;
 
     /**
      * The attributes that are mass assignable.
@@ -46,5 +46,10 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function usergrup(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Usergrup::class, 'user_grup_id');
     }
 }

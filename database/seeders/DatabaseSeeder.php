@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Level;
-use App\Models\level_permissions;
-use App\Models\LevelPermissions;
 use App\Models\User;
+use App\Models\Usergrup;
+use App\Models\Usergruppermission;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -19,18 +18,20 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        User::factory()->create([
+        $level = Usergrup::factory()->create([
+            'nama_grup' => 'Admin',
+        ]);
+        //
+        $User = User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
+            'user_grup_id' => $level->id,
         ]);
+
         User::factory(5)->create();
 
-        // 
-        $level = Level::factory()->create([
-            'nama_level' => 'Admin',
-        ]);
 
-        // List all models in the app/Models directory
+        // // List all models in the app/Models directory
         $modelList = [];
         $path = app_path() . "/Models";
         $results = scandir($path);
@@ -40,14 +41,13 @@ class DatabaseSeeder extends Seeder
                 continue;
             $filename = $result;
             $modelList[] = substr($filename, 0, -4);
-            LevelPermissions::factory()->create([
-                'level_id' => $level->id,
-                'nama' => substr($filename, 0, -4),
+            Usergruppermission::factory()->create([
+                'user_grup_id' => $level->id,
+                'permission' => substr($filename, 0, -4),
             ]);
         }
 
 
-        dd($modelList);
+        // dd($modelList);
     }
 }
-

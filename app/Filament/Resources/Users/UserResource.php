@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Users;
 
 use App\Filament\Resources\Users\Pages\ManageUsers;
 use App\Models\User;
+use App\Models\Usergrup;
 use BackedEnum;
 use Filament\Actions\Action;
 use Filament\Actions\ActionGroup;
@@ -16,6 +17,7 @@ use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\TextInput;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Resource;
+use Filament\Schemas\Components\Actions;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
@@ -101,7 +103,13 @@ class UserResource extends Resource
             ])
             ->recordActions([
                 ActionGroup::make([
-                    
+                    Action::make('detail')
+                        ->label('View')
+                        ->icon('heroicon-o-eye')
+                        ->action(function (User $user, array $data): void {
+                            $usrg=Usergrup::where('id',$user->user_grup_id)->first();
+                            dd($usrg);
+                        }),
                     ViewAction::make()
                         ->label('Detail')
                         ->color('info')
