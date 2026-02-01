@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Users;
 
+use App\Filament\Resources\Usergrups\UsergrupResource;
 use App\Filament\Resources\Users\Pages\ManageUsers;
 use App\Models\User;
 use App\Models\Usergrup;
@@ -14,15 +15,22 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Actions;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
+use Filament\Tables\Columns\SelectColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Container\Attributes\Auth;
+use Illuminate\Support\Facades\Hash;
 use UnitEnum;
+
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Http;
 
 class UserResource extends Resource
 {
@@ -30,7 +38,7 @@ class UserResource extends Resource
 
     // protected static string|BackedEnum|null $navigationIcon = Heroicon::User;
 
-    protected static string | UnitEnum | null $navigationGroup = 'User Management';
+    protected static string|UnitEnum|null $navigationGroup = 'User Management';
 
     protected static ?string $recordTitleAttribute = 'name';
 
@@ -41,12 +49,19 @@ class UserResource extends Resource
                 TextInput::make('name')
                     ->required(),
                 TextInput::make('email')
+                    ->unique(ignoreRecord: true)
                     ->label('Email address')
                     ->email()
                     ->required(),
                 DateTimePicker::make('email_verified_at'),
                 TextInput::make('password')
                     ->password()
+                    ->required()
+                    ->dehydrateStateUsing(fn(string $state): string => Hash::make($state))
+                    ->saved(fn(?string $state): bool => filled($state))
+                    ->required(fn(string $operation): bool => $operation === 'create'),
+                Select::make('usergrup')
+                    ->options(Usergrup::query()->pluck('nama_grup', 'id'))
                     ->required(),
             ])
             ->columns(1);
@@ -60,12 +75,6 @@ class UserResource extends Resource
                 TextEntry::make('email')
                     ->label('Email address'),
                 TextEntry::make('email_verified_at')
-                    ->dateTime()
-                    ->placeholder('-'),
-                TextEntry::make('created_at')
-                    ->dateTime()
-                    ->placeholder('-'),
-                TextEntry::make('updated_at')
                     ->dateTime()
                     ->placeholder('-'),
             ]);
@@ -85,31 +94,23 @@ class UserResource extends Resource
                     ->visibleFrom('sm')
                     ->dateTime()
                     ->sortable(),
-                TextColumn::make('created_at')
-                    ->visibleFrom('md')
-                    ->dateTime()
-                    ->sortable()
-                // ->toggleable(isToggledHiddenByDefault: true)
-                ,
-                TextColumn::make('updated_at')
-                    ->visibleFrom('md')
-                    ->dateTime()
-                    ->sortable()
-                // ->toggleable(isToggledHiddenByDefault: true)
-                ,
+
             ])
             ->filters([
                 //
             ])
             ->recordActions([
+                Action::make('detail')
+                    ->label('View')
+                    ->icon('heroicon-o-eye')
+                    ->url(function (User $record): string {
+                        // $usr = User::find($record)->first();
+                        // $a = '';
+                        // dd($record->userGrups->id);
+                        return UsergrupResource::getUrl('view', ['record' => $record->userGrups->id]);
+                    })
+                ,
                 ActionGroup::make([
-                    Action::make('detail')
-                        ->label('View')
-                        ->icon('heroicon-o-eye')
-                        ->action(function (User $user, array $data): void {
-                            $usrg=Usergrup::where('id',$user->user_grup_id)->first();
-                            dd($usrg);
-                        }),
                     ViewAction::make()
                         ->label('Detail')
                         ->color('info')

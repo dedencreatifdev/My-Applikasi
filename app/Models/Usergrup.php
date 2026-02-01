@@ -16,4 +16,9 @@ class Usergrup extends Model
     protected $fillable = [
         'nama_grup',
     ];
+
+    public function Usergruppermission(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Usergruppermission::class, 'usergrup_id');
+    }
 }

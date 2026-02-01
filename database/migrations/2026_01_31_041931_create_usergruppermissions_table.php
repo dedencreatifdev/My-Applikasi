@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('usergruppermissions', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('user_grup_id')->constrained('usergrups')->onDelete('cascade');
+            $table->foreignUuid('usergrup_id')->constrained('usergrups')->onDelete('cascade');
             $table->string('permission');
             $table->timestamps();
         });

@@ -25,10 +25,10 @@ class DatabaseSeeder extends Seeder
         $User = User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
-            'user_grup_id' => $level->id,
+            'usergrup_id' => $level->id,
         ]);
 
-        User::factory(5)->create();
+        // User::factory(5)->create();
 
 
         // // List all models in the app/Models directory
@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
             $filename = $result;
             $modelList[] = substr($filename, 0, -4);
             Usergruppermission::factory()->create([
-                'user_grup_id' => $level->id,
+                'usergrup_id' => $level->id,
                 'permission' => substr($filename, 0, -4),
             ]);
         }
