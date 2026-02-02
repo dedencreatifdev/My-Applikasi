@@ -15,6 +15,13 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignUuid('usergrup_id')->constrained('usergrups')->onDelete('cascade');
             $table->string('permission');
+            $table->boolean('lihat')->default(false);
+            $table->boolean('tambah')->default(false);
+            $table->boolean('ubah')->default(false);
+            $table->boolean('hapus')->default(false);
+            $table->boolean('detail')->default(false);
+            $table->boolean('export')->default(false);
+            $table->boolean('import')->default(false);
             $table->timestamps();
         });
     }

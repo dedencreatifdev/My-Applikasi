@@ -11,7 +11,8 @@ class UsergrupInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('nama_grup'),
+                TextEntry::make('nama_grup')
+                ->inlineLabel(),
             ]);
     }
 }

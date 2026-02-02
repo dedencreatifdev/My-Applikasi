@@ -13,6 +13,7 @@ use Filament\Actions\EditAction;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Schemas\Schema;
+use Filament\Tables\Columns\CheckboxColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -36,23 +37,30 @@ class UsergruppermissionRelationManager extends RelationManager
             ->recordTitleAttribute('usergrup_id')
             ->columns([
                 TextColumn::make('permission'),
+                CheckboxColumn::make('lihat'),
+                CheckboxColumn::make('tambah'),
+                CheckboxColumn::make('ubah'),
+                CheckboxColumn::make('hapus'),
+                CheckboxColumn::make('detail'),
+                CheckboxColumn::make('export'),
+                CheckboxColumn::make('import'),
             ])
             ->filters([
                 //
             ])
             ->headerActions([
-                CreateAction::make(),
-                AssociateAction::make(),
+                // CreateAction::make(),
+                // AssociateAction::make(),
             ])
             ->recordActions([
-                EditAction::make(),
-                DissociateAction::make(),
-                DeleteAction::make(),
+                // EditAction::make(),
+                // DissociateAction::make(),
+                // DeleteAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-                    DissociateBulkAction::make(),
-                    DeleteBulkAction::make(),
+                    // DissociateBulkAction::make(),
+                    // DeleteBulkAction::make(),
                 ]),
             ]);
     }

@@ -29,7 +29,7 @@ class UsergrupPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -37,7 +37,7 @@ class UsergrupPolicy
      */
     public function update(User $user, Usergrup $usergrup): bool
     {
-        return false;
+        return true;
     }
 
     /**
