@@ -63,4 +63,12 @@ class UsergrupPolicy
     {
         return false;
     }
+
+    /**
+     * Determine whether the user can delete the model.
+     */
+    public function deleteAny(User $user): bool
+    {
+        return false;
+    }
 }

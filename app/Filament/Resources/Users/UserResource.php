@@ -58,9 +58,9 @@ class UserResource extends Resource
                     ->dehydrateStateUsing(fn(string $state): string => Hash::make($state))
                     ->saved(fn(?string $state): bool => filled($state))
                     ->required(fn(string $operation): bool => $operation === 'create'),
-                // Select::make('usergrup_id')
-                //     ->options(Usergrup::query()->pluck('nama_grup', 'id'))
-                //     ->required(),
+                Select::make('usergrup_id')
+                    ->options(Usergrup::query()->pluck('nama_grup', 'id'))
+                    ->required(),
             ])
             ->columns(1);
     }
