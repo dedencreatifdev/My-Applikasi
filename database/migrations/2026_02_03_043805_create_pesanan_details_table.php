@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('usergrups', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->string('nama_grup')->unique();
-            
+        Schema::create('pesanan_details', function (Blueprint $table) {
+            $table->id();
             $table->timestamps();
         });
     }
@@ -24,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('usergrups');
+        Schema::dropIfExists('pesanan_details');
     }
 };

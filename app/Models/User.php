@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, HasUuids;
+    use HasFactory, Notifiable, HasUuids,HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -23,7 +24,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'usergrup_id'
     ];
 
     /**
@@ -50,8 +50,4 @@ class User extends Authenticatable
         ];
     }
 
-    public function userGrups(): \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(Usergrup::class, 'usergrup_id');
-    }
 }

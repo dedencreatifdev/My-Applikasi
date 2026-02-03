@@ -18,14 +18,11 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        $level = Usergrup::factory()->create([
-            'nama_grup' => 'Admin',
-        ]);
+
         //
         $User = User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
-            'usergrup_id' => $level->id,
         ]);
 
         // User::factory(5)->create();
@@ -41,13 +38,8 @@ class DatabaseSeeder extends Seeder
                 continue;
             $filename = $result;
             $modelList[] = substr($filename, 0, -4);
-            Usergruppermission::factory()->create([
-                'usergrup_id' => $level->id,
-                'permission' => substr($filename, 0, -4),
-            ]);
+
         }
 
-
-        // dd($modelList);
     }
 }
