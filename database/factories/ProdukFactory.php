@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\UserGrup>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Produk>
  */
-class UserGrupFactory extends Factory
+class ProdukFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,7 @@ class UserGrupFactory extends Factory
     public function definition(): array
     {
         return [
-            'nama_grup' => $this->faker->unique()->word(),
+            //
         ];
     }
 }

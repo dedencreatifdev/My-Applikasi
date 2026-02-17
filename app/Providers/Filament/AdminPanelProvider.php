@@ -79,17 +79,17 @@ class AdminPanelProvider extends PanelProvider
             ->font('Poppins')
             ->maxContentWidth(Width::Full)
             // ->sidebarCollapsibleOnDesktop()
-            ->sidebarFullyCollapsibleOnDesktop()
+            // ->sidebarFullyCollapsibleOnDesktop()
             ->sidebarWidth('17rem')
             //
-            // ->topNavigation()
+            ->topNavigation()
 
             ->navigationGroups([
                 NavigationGroup::make()
                     ->label('User Management')
                     ->icon(Heroicon::OutlinedUsers),
                 NavigationGroup::make()
-                    ->label('Blog')
+                    ->label('Produk')
                     ->icon(Heroicon::OutlinedPencil),
                 NavigationGroup::make()
                     ->label(fn(): string => __('navigation.settings'))

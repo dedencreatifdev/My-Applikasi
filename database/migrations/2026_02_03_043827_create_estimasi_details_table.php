@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('usergruppermissions', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->foreignUuid('usergrup_id')->constrained('usergrups')->onDelete('cascade');
-            $table->string('permission');
+        Schema::create('estimasi_details', function (Blueprint $table) {
+            $table->id();
             $table->timestamps();
         });
     }
@@ -24,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('usergruppermissions');
+        Schema::dropIfExists('estimasi_details');
     }
 };
