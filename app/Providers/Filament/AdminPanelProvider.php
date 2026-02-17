@@ -31,6 +31,17 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('')
             ->login()
+            ->registration()
+            ->loginRouteSlug('login')
+            ->registrationRouteSlug('daftar')
+            ->passwordResetRoutePrefix('password-reset')
+            ->passwordResetRequestRouteSlug('request')
+            ->passwordResetRouteSlug('reset')
+            ->emailVerificationRoutePrefix('email-verification')
+            ->emailVerificationPromptRouteSlug('prompt')
+            ->emailVerificationRouteSlug('verify')
+            ->emailChangeVerificationRoutePrefix('email-change-verification')
+            ->emailChangeVerificationRouteSlug('verify')
             ->colors([
                 'primary' => Color::Orange, //Color::Indigo,
                 'success' => Color::Emerald, // Emerald
